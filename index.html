@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>моей девочке.</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #000000, #0c16d3cc);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .card {
+            background: lab(0% 0 0);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            padding: 30px;
+            text-align: center;
+            max-width: 350px;
+            width: 90%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pages-container {
+            display: none;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .pages-container.active {
+            display: block;
+        }
+
+        .photo-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 5px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            color: #361fd2;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+            font-style: italic;
+            min-height: 60px;
+        }
+
+        .heart {
+            color: #000000;
+            font-size: 40px;
+            margin: 10px 0;
+            animation: pulse 1.5s infinite;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #3c16e8f8;
+            color: lab(0% 0 0);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #ffffff;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Страница 1 -->
+        <div class="pages-container active">
+            <div class="photo-container">
+                <img src="photo4.jpg" alt="фото 1">
+            </div>
+            <h1>с тобой</h1>
+            <p>мне безумно комфортно и тепло.</p>
+        </div>
+
+        <!-- Страница 2 -->
+        <div class="pages-container">
+            <div class="photo-container">
+                <img src="photo5.jpg" alt="фото 2">
+            </div>
+            <h1>с тобой..</h1>
+            <p>мне нравится сутками разговаривать и смеятся.</p>
+        </div>   
+        <!-- Страница 3 -->
+        <div class="pages-container">
+            <div class="photo-container">
+                <img src="photo6.jpg" alt="фото 2">
+            </div>
+            <h1>с тобой:</h1>
+            <p> я чувствую себя живой.</p>
+        </div>
+                <!-- Страница 4 -->
+        <div class="pages-container">
+            <div class="photo-container">
+                <img src="photo7.jpg" alt="фото 2">
+            </div>
+            <h1>хотела сказать, что</h1></h1>
+            <p>безумно ценю тебя, хочу радовать и любить так долго, сколько ты позволишь.</p>
+        </div>
+                <!-- Страница 5 -->
+        <div class="pages-container">
+            <div class="photo-container">
+                <img src="photo8.jpg" alt="фото 2">
+            </div>
+            <h1>любимая,</h1>
+            <p>ты мой мир и новое дыхание , что заставляет делать хоть что то.</p>
+        </div>
+
+        <div class="heart">❤️</div>
+
+        <div class="nav-buttons">
+            <button id="prevBtn" onclick="changePage(-1)" disabled>Назад</button>
+            <button id="nextBtn" onclick="changePage(1)">Вперед</button>
+        </div>
+
+        <p style="font-size: 12px; margin-top: 15px;"><strong>люблю тебя, дура.</strong></p>
+    </div>
+
+    <script>
+        let currentPage = 0;
+        const pages = document.querySelectorAll('.pages-container');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function changePage(direction) {
+            pages[currentPage].classList.remove('active');
+            currentPage += direction;
+            pages[currentPage].classList.add('active');
+
+            prevBtn.disabled = (currentPage === 0);
+            nextBtn.disabled = (currentPage === pages.length - 1);
+        }
+    </script>
+
+</body>
+</html>
